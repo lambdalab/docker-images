@@ -33,5 +33,8 @@ RUN apt-get install -y libboost-dev libboost-test-dev libboost-program-options-d
 # install mongo client, easy to test
 RUN apt-get install -y mongodb-clients
 
+# scm
+RUN apt-get install -y git mercurial subversion
+
 RUN adduser --quiet jenkins
 RUN echo "jenkins:jenkins" | chpasswd
