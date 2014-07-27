@@ -24,7 +24,7 @@ RUN dpkg -i sbt.deb
 RUN wget https://services.gradle.org/distributions/gradle-2.0-bin.zip --no-verbose
 RUN unzip gradle-2.0-bin.zip -d /tools
 RUN echo PATH=$PATH:/tools/gradle-2.0/bin >> /etc/environment
-RUN echo TOOLS_DIR=/tools
+RUN echo TOOLS_DIR=/tools >> /etc/environment
 
 # install node js
 RUN apt-get install -y nodejs
