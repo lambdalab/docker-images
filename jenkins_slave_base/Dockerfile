@@ -23,6 +23,7 @@ RUN dpkg -i sbt.deb
 
 RUN wget https://services.gradle.org/distributions/gradle-2.0-bin.zip --no-verbose
 RUN unzip gradle-2.0-bin.zip -d /tools
+RUN rm gradle-2.0-bin.zip
 RUN echo PATH=$PATH:/tools/gradle-2.0/bin >> /etc/environment
 RUN echo TOOLS_DIR=/tools >> /etc/environment
 
