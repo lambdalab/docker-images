@@ -15,11 +15,16 @@ RUN curl -sSL https://get.rvm.io | bash
 RUN echo "source /etc/profile.d/rvm.sh; rvm install ruby-2.0.0-p481; gem install bundle" | bash
 
 # install build tools
-RUN apt-get install -y ant maven gradle
+RUN apt-get install -y ant maven
 
 # install build tool - sbt
 RUN wget http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt/0.13.0/sbt.deb --no-verbose
 RUN dpkg -i sbt.deb
+
+RUN wget https://services.gradle.org/distributions/gradle-2.0-bin.zip --no-verbose
+RUN unzip gradle-2.0-bin.zip -d /tools
+RUN echo PATH=$PATH:/tools/gradle-2.0/bin >> /etc/environment
+RUN echo TOOLS_DIR=/tools
 
 # install node js
 RUN apt-get install -y nodejs
