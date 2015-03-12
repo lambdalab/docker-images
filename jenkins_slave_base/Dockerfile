@@ -21,11 +21,10 @@ RUN apt-get install -y ant maven
 RUN wget http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt/0.13.0/sbt.deb --no-verbose
 RUN dpkg -i sbt.deb
 
-RUN wget https://services.gradle.org/distributions/gradle-2.0-bin.zip --no-verbose
-RUN unzip gradle-2.0-bin.zip -d /tools
-RUN rm gradle-2.0-bin.zip
-RUN echo PATH=$PATH:/tools/gradle-2.0/bin >> /etc/environment
-RUN echo TOOLS_DIR=/tools >> /etc/environment
+RUN wget https://services.gradle.org/distributions/gradle-2.3-bin.zip --no-verbose
+RUN unzip gradle-2.3-bin.zip -d /usr/lib
+RUN rm gradle-2.3-bin.zip
+RUN echo PATH=$PATH:/usr/lib/gradle-2.3/bin >> /etc/environment
 
 # install node js
 RUN apt-get install -y nodejs
@@ -41,6 +40,9 @@ RUN apt-get install -y mongodb-clients
 
 # scm
 RUN apt-get install -y git mercurial subversion
+
+# help jdk build
+RUN apt-get install libcups2-dev libasound2-dev libfreetype6-dev, libxtst-dev, libxrender-dev
 
 RUN adduser --quiet jenkins
 RUN echo "jenkins:jenkins" | chpasswd
