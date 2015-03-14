@@ -44,5 +44,11 @@ RUN apt-get install -y git mercurial subversion
 # help jdk build
 RUN apt-get install libcups2-dev libasound2-dev libfreetype6-dev, libxtst-dev, libxrender-dev
 
+# tools for build android app
+RUN wget http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz --no-verbose
+RUN tar -xf android-sdk_r24.0.2-linux.tgz -C /usr/lib
+RUN echo y | /usr/lib/android-sdk-linux/tools/android update sdk --no-ui -s
+RUN echo ANDROID_HOME=/usr/lib/android-sdk-linux >> /etc/environment
+
 RUN adduser --quiet jenkins
 RUN echo "jenkins:jenkins" | chpasswd
