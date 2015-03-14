@@ -42,7 +42,7 @@ RUN apt-get install -y mongodb-clients
 RUN apt-get install -y git mercurial subversion
 
 # help jdk build
-RUN apt-get install libcups2-dev libasound2-dev libfreetype6-dev, libxtst-dev, libxrender-dev
+RUN apt-get install libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
 
 # tools for build android app
 RUN wget http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz --no-verbose
