@@ -1,5 +1,6 @@
 FROM ubuntu:14.04
 MAINTAINER zfy0701
+dpkg --add-architecture i386
 RUN apt-get update
 RUN apt-get install -y software-properties-common
 RUN \
