@@ -22,9 +22,9 @@ RUN wget http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sb
 RUN dpkg -i sbt.deb
 
 RUN wget https://services.gradle.org/distributions/gradle-2.3-bin.zip --no-verbose
-RUN unzip gradle-2.3-bin.zip -d /usr/lib
+RUN unzip gradle-2.3-bin.zip -d /opt
 RUN rm gradle-2.3-bin.zip
-RUN echo PATH=$PATH:/usr/lib/gradle-2.3/bin >> /etc/environment
+RUN echo PATH=$PATH:/opt/gradle-2.3/bin >> /etc/environment
 
 # install node js
 RUN apt-get install -y nodejs
@@ -45,10 +45,11 @@ RUN apt-get install -y git mercurial subversion
 RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
 
 # tools for build android app
+COPY tools /opt/tools
 RUN wget http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz --no-verbose
-RUN tar -xf android-sdk_r24.0.2-linux.tgz -C /usr/lib
-RUN echo y | /usr/lib/android-sdk-linux/tools/android update sdk --no-ui -s
-RUN echo ANDROID_HOME=/usr/lib/android-sdk-linux >> /etc/environment
+RUN tar -xf android-sdk_r24.0.2-linux.tgz -C /opt
+RUN echo ANDROID_HOME=/opt/android-sdk-linux >> /etc/environment
+RUN ["/opt/tools/android-accept-licenses.sh", "/opt/android-sdk-linux/tools/android update sdk --no-ui --all"]
 
 RUN adduser --quiet jenkins
 RUN echo "jenkins:jenkins" | chpasswd
