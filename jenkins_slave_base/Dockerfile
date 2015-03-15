@@ -1,12 +1,6 @@
 FROM lambdalab/base
 MAINTAINER zfy0701
 
-RUN apt-get install -y openssh-server
-RUN service ssh restart
-
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
-
 # install python
 RUN apt-get install -y python-pip
 
@@ -14,13 +8,14 @@ RUN apt-get install -y python-pip
 RUN curl -sSL https://get.rvm.io | bash
 RUN echo "source /etc/profile.d/rvm.sh; rvm install ruby-2.0.0-p481; gem install bundle" | bash
 
-# install build tools
+# ant, maven
 RUN apt-get install -y ant maven
 
-# install build tool - sbt
+# sbt
 RUN wget http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt/0.13.0/sbt.deb --no-verbose
 RUN dpkg -i sbt.deb
 
+# install gradle
 RUN wget https://services.gradle.org/distributions/gradle-2.3-bin.zip --no-verbose
 RUN unzip gradle-2.3-bin.zip -d /opt
 RUN rm gradle-2.3-bin.zip
@@ -46,11 +41,9 @@ RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev 
 
 # tools for build android app
 COPY tools /opt/tools
+RUN apt-get install -y expect # used by tools
 RUN apt-get install -y libc6:i386 libstdc++6:i386 zlib1g:i386
 RUN wget http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz --no-verbose
 RUN tar -xf android-sdk_r24.0.2-linux.tgz -C /opt
 RUN echo ANDROID_HOME=/opt/android-sdk-linux >> /etc/environment
 RUN ["/opt/tools/android-accept-licenses.sh", "/opt/android-sdk-linux/tools/android update sdk --no-ui --all"]
-
-RUN adduser --quiet jenkins
-RUN echo "jenkins:jenkins" | chpasswd
