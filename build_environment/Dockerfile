@@ -19,7 +19,7 @@ RUN dpkg -i sbt.deb
 RUN wget https://services.gradle.org/distributions/gradle-2.3-bin.zip --no-verbose
 RUN unzip gradle-2.3-bin.zip -d /opt
 RUN rm gradle-2.3-bin.zip
-RUN echo PATH=$PATH:/opt/gradle-2.3/bin >> /etc/environment
+ENV PATH $PATH:/opt/gradle-2.3/bin
 
 # install node js
 RUN apt-get install -y nodejs
@@ -45,5 +45,6 @@ RUN apt-get install -y expect # used by tools
 RUN apt-get install -y libc6:i386 libstdc++6:i386 zlib1g:i386
 RUN wget http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz --no-verbose
 RUN tar -xf android-sdk_r24.0.2-linux.tgz -C /opt
-RUN echo ANDROID_HOME=/opt/android-sdk-linux >> /etc/environment
+RUN rm android-sdk_r24.0.2-linux.tgz
+ENV ANDROID_HOME /opt/android-sdk-linux
 RUN ["/opt/tools/android-accept-licenses.sh", "/opt/android-sdk-linux/tools/android update sdk --no-ui --all"]
