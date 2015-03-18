@@ -48,3 +48,6 @@ RUN tar -xf android-sdk_r24.0.2-linux.tgz -C /opt
 RUN rm android-sdk_r24.0.2-linux.tgz
 ENV ANDROID_HOME /opt/android-sdk-linux
 RUN ["/opt/tools/android-accept-licenses.sh", "/opt/android-sdk-linux/tools/android update sdk --no-ui --all"]
+
+# Hack to get around UID mismatch
+RUN for i in $(seq 1000 1010); do useradd builder$i -m -u $i ; done
