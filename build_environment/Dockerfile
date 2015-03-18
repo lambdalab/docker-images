@@ -1,6 +1,8 @@
 FROM lambdalab/base
 MAINTAINER zfy0701
 
+RUN apt-get update
+
 # install python
 RUN apt-get install -y python-pip
 
