@@ -24,7 +24,10 @@ RUN rm gradle-2.3-bin.zip
 ENV PATH $PATH:/opt/gradle-2.3/bin
 
 # install node js
-RUN apt-get install -y nodejs
+RUN wget http://nodejs.org/dist/latest/node-v0.12.1-linux-x64.tar.gz --no-verbose
+RUN tar -xf node-v0.12.1-linux-x64.tar.gz -C /opt
+RUN rm node-v0.12.1-linux-x64.tar.gz
+ENV PATH $PATH:/opt/node-v0.12.1-linux-x64/bin
 
 # install proto compiler
 RUN apt-get install -y libprotobuf-dev protobuf-compiler
