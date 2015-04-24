@@ -10,6 +10,9 @@ RUN apt-get install -y python-pip
 RUN curl -sSL https://get.rvm.io | bash
 RUN echo "source /etc/profile.d/rvm.sh; rvm install ruby-2.0.0-p481; gem install bundle" | bash
 
+# install zip
+RUN apt-get install -y zip
+
 # ant, maven
 RUN apt-get install -y ant maven
 
