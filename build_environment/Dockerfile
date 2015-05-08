@@ -52,3 +52,4 @@ RUN for i in $(seq 1000 1010); do useradd builder$i -m -u $i ; done
 
 # Anddroid SDK mount point
 ENV ANDROID_HOME /android-sdk-linux
+RUN apt-get install -y lib32stdc++6 lib32z1
