@@ -18,7 +18,7 @@ RUN apt-get install -y ant maven
 
 # sbt
 RUN wget http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb --no-verbose
-RUN dpkg -i sbt.deb
+RUN dpkg -i sbt-0.13.5.deb
 
 # install gradle
 RUN wget https://services.gradle.org/distributions/gradle-2.3-bin.zip --no-verbose
