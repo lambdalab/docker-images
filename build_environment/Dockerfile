@@ -17,7 +17,7 @@ RUN apt-get install -y zip
 RUN apt-get install -y ant maven
 
 # sbt
-RUN wget http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt/0.13.0/sbt.deb --no-verbose
+RUN wget http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb --no-verbose
 RUN dpkg -i sbt.deb
 
 # install gradle
