@@ -48,7 +48,7 @@ RUN apt-get install -y git mercurial subversion
 RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
 
 # install cmake
-RUN apt-get install -y build-essential cmake texinfo
+RUN apt-get install -y build-essential cmake texinfo libtool bc
 
 # Hack to get around UID mismatch
 RUN for i in $(seq 1000 1010); do useradd builder$i -m -u $i -G sudo,root; done
