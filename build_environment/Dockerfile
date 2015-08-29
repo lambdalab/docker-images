@@ -50,6 +50,9 @@ RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev 
 # install cmake
 RUN apt-get install -y build-essential cmake texinfo libtool bc
 
+# install intel omp so that it's header could be found by clang
+RUN apt-get install -y libiomp-dev
+
 # Hack to get around UID mismatch
 RUN for i in $(seq 1000 1010); do useradd builder$i -m -u $i -G sudo,root; done
 
