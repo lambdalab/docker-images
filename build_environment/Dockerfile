@@ -1,5 +1,5 @@
 FROM lambdalab/base
-MAINTAINER zfy0701
+MAINTAINER lambdalab
 
 RUN apt-get update
 
@@ -15,16 +15,6 @@ RUN apt-get install -y zip
 
 # ant, maven
 RUN apt-get install -y ant maven
-
-# sbt
-RUN wget http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb --no-verbose
-RUN dpkg -i sbt-0.13.5.deb
-
-# install gradle
-RUN wget https://services.gradle.org/distributions/gradle-2.3-bin.zip --no-verbose
-RUN unzip gradle-2.3-bin.zip -d /opt
-RUN rm gradle-2.3-bin.zip
-ENV PATH $PATH:/opt/gradle-2.3/bin
 
 # install node js
 RUN wget http://nodejs.org/dist/v0.12.2/node-v0.12.2-linux-x64.tar.gz --no-verbose
@@ -42,7 +32,7 @@ RUN apt-get install -y libboost-dev libboost-test-dev libboost-program-options-d
 RUN apt-get install -y mongodb-clients
 
 # scm
-RUN apt-get install -y git mercurial subversion
+RUN apt-get install -y git
 
 # help jdk build
 RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
