@@ -51,3 +51,7 @@ RUN echo "%sudo ALL=(ALL) NOPASSWD: /usr/bin/apt-get" >> /etc/sudoers
 # Anddroid SDK mount point
 ENV ANDROID_HOME /android-sdk-linux
 RUN apt-get install -y lib32stdc++6 lib32z1
+
+
+# Others to prevent build failed
+RUN apt-get install -y doxygen ascii
