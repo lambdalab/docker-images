@@ -50,6 +50,7 @@ RUN apt-get install -y libiomp-dev
 
 # Hack to get around UID mismatch
 RUN for i in $(seq 1000 1010); do useradd builder$i -m -u $i -G sudo,root; done
+RUN ln -s /root /home/builder0
 
 RUN echo "%sudo ALL=(ALL) NOPASSWD: /usr/bin/apt-get" >> /etc/sudoers
 
