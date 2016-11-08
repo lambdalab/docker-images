@@ -5,6 +5,7 @@ RUN apt-get update
 
 # install python
 RUN apt-get install -y python-pip
+RUN apt-get install -y python-dev libxml2-dev libxslt-dev
 
 # install ruby
 RUN curl -sSL https://get.rvm.io | bash
