@@ -1,6 +1,11 @@
 FROM lambdalab/base
 MAINTAINER lambdalab
 
+ENV LANG en_US.UTF-8
+
+RUN locale-gen en_US.UTF-8
+
+RUN add-apt-repository -y ppa:ondrej/php
 RUN apt-get update
 
 # install python
@@ -26,10 +31,11 @@ ENV PATH $PATH:/opt/node-v0.12.2-linux-x64/bin
 # install proto compiler
 RUN apt-get install -y libprotobuf-dev
 #protobuf-compiler
-RUN wget https://github.com/google/protobuf/releases/download/v3.0.0-beta-3/protoc-3.0.0-beta-3-linux-x86_64.zip
-RUN unzip protoc-3.0.0-beta-3-linux-x86_64.zip -d /opt/protobuf
-RUN rm protoc-3.0.0-beta-3-linux-x86_64.zip
-ENV PATH $PATH:/opt/protobuf
+RUN apt-get install -y protobuf-compiler
+# RUN wget https://github.com/google/protobuf/releases/download/v3.0.0-beta-3/# protoc-3.0.0-beta-3-linux-x86_64.zip
+#RUN unzip protoc-3.0.0-beta-3-linux-x86_64.zip -d /opt/protobuf
+#RUN rm protoc-3.0.0-beta-3-linux-x86_64.zip
+#ENV PATH $PATH:/opt/protobuf
 
 # install thrift
 RUN apt-get install -y libboost-dev libboost-test-dev libboost-program-options-dev libevent-dev automake libtool flex bison pkg-config g++ libssl-dev
@@ -39,6 +45,9 @@ RUN apt-get install -y mongodb-clients
 
 # scm
 RUN apt-get install -y git
+
+# php
+RUN apt-get install -y php7.0
 
 # help jdk build
 RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
