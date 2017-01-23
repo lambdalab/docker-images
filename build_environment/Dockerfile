@@ -47,7 +47,7 @@ RUN apt-get install -y mongodb-clients
 RUN apt-get install -y git
 
 # php
-RUN apt-get install -y php7.0
+RUN apt-get install -y php7.0 php7.0-xml
 
 # help jdk build
 RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
@@ -68,6 +68,8 @@ RUN echo "%sudo ALL=(ALL) NOPASSWD: /usr/bin/apt-get" >> /etc/sudoers
 ENV ANDROID_HOME /android-sdk-linux
 RUN apt-get install -y lib32stdc++6 lib32z1
 
+# install iconv lib
+RUN curl https://gist.githubusercontent.com/merqlove/eda0bd9511fce0d319e6efb152f8c68d/raw/33d444fc8536de3ca092efb5823bbfbaeb7c45a3/iconv_install_ubuntu14.sh | sh
 
 # Others to prevent build failed
 RUN apt-get install -y doxygen ascii
