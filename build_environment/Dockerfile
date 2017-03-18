@@ -44,7 +44,9 @@ RUN apt-get install -y libboost-dev libboost-test-dev libboost-program-options-d
 RUN apt-get install -y mongodb-clients
 
 # scm
-RUN apt-get install -y git
+RUN add-apt-repository -y ppa:git-core/ppa
+RUN apt-get update
+RUN apt-get install git -y
 
 # php
 RUN apt-get install -y php7.0 php7.0-xml
