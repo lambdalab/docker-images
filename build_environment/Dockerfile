@@ -22,6 +22,9 @@ RUN apt-get install -y zip
 # ant, maven
 RUN apt-get install -y ant maven
 
+# mercurial/hg 
+RUN apt-get install -y mercurial meld
+
 # install node js
 RUN wget http://nodejs.org/dist/v0.12.2/node-v0.12.2-linux-x64.tar.gz --no-verbose
 RUN tar -xf node-v0.12.2-linux-x64.tar.gz -C /opt
