@@ -23,7 +23,7 @@ RUN apt-get install -y zip
 # ant, maven
 RUN apt-get install -y ant maven
 
-# mercurial/hg 
+# mercurial/hg
 RUN apt-get install -y mercurial meld
 
 # install node js
@@ -58,8 +58,14 @@ RUN apt-get install -y php7.0 php7.0-xml
 # help jdk build
 RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
 
+# install build tool
+RUN apt-get install -y build-essential texinfo libtool bc
+
 # install cmake
-RUN apt-get install -y build-essential cmake texinfo libtool bc
+RUN wget https://cmake.org/files/v3.8/cmake-3.8.1-Linux-x86_64.tar.gz
+RUN tar -xf cmake-3.8.1-Linux-x86_64.tar.gz
+RUN cp cmake-3.8.1-Linux-x86_64/bin/* /usr/bin/
+RUN rm cmake-3.8.1-Linux-x86_64.tar.gz
 
 # install intel omp so that it's header could be found by clang
 RUN apt-get install -y libiomp-dev
@@ -79,3 +85,5 @@ RUN curl https://gist.githubusercontent.com/merqlove/eda0bd9511fce0d319e6efb152f
 
 # Others to prevent build failed
 RUN apt-get install -y doxygen ascii
+
+# TODO: make apt-get need no sudo
