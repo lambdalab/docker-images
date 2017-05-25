@@ -6,6 +6,8 @@ ENV LANG en_US.UTF-8
 RUN locale-gen en_US.UTF-8
 
 RUN add-apt-repository -y ppa:ondrej/php
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+RUN add-apt-repository -y ppa:git-core/ppa 
 RUN apt-get update
 
 # install python
@@ -47,9 +49,7 @@ RUN apt-get install -y libboost-dev libboost-test-dev libboost-program-options-d
 # install mongo client, easy to test
 RUN apt-get install -y mongodb-clients
 
-# scm
-RUN add-apt-repository -y ppa:git-core/ppa
-RUN apt-get update
+# scm 
 RUN apt-get install git -y
 
 # php
@@ -62,10 +62,17 @@ RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev 
 RUN apt-get install -y build-essential texinfo libtool bc
 
 # install cmake
-RUN wget https://cmake.org/files/v3.8/cmake-3.8.1-Linux-x86_64.tar.gz
-RUN tar -xf cmake-3.8.1-Linux-x86_64.tar.gz
-RUN cp cmake-3.8.1-Linux-x86_64/bin/* /usr/bin/
-RUN rm cmake-3.8.1-Linux-x86_64.tar.gz
+RUN wget https://cmake.org/files/v3.8/cmake-3.8.1.tar.gz
+RUN tar -xf cmake-3.8.1.tar.gz
+RUN cd cmake-3.8.1 && ./bootstrap && make && make install
+RUN rm -rf cmake-3.8.1*
+
+# install gcc 5
+RUN apt-get install -y gcc-5 g++-5 cpp-5 c++-5
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 1
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 1
+# RUN update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-5 1
+# RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/c++-5 1
 
 # install intel omp so that it's header could be found by clang
 RUN apt-get install -y libiomp-dev
