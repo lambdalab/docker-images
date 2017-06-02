@@ -53,7 +53,7 @@ RUN apt-get install -y mongodb-clients
 RUN apt-get install git -y
 
 # php
-RUN apt-get install -y php7.0 php7.0-xml
+RUN apt-get install -y php7.0 php7.0-xml php7.0-mbstring
 
 # help jdk build
 RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
