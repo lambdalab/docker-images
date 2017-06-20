@@ -44,7 +44,7 @@ RUN apt-get install -y protobuf-compiler
 #ENV PATH $PATH:/opt/protobuf
 
 # install thrift
-RUN apt-get install -y libboost-dev libboost-test-dev libboost-program-options-dev libevent-dev automake libtool flex bison pkg-config g++ libssl-dev
+RUN apt-get install -y libevent-dev automake libtool flex bison pkg-config g++ libssl-dev
 
 # install mongo client, easy to test
 RUN apt-get install -y mongodb-clients
