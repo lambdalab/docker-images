@@ -8,6 +8,7 @@ RUN locale-gen en_US.UTF-8
 RUN add-apt-repository -y ppa:ondrej/php
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN add-apt-repository -y ppa:git-core/ppa 
+RUN add-apt-repository -y ppa:gophers/archive
 RUN apt-get update
 
 # install python
@@ -29,15 +30,14 @@ RUN apt-get install -y ant maven
 RUN apt-get install -y mercurial meld
 
 # install node js
-RUN wget http://nodejs.org/dist/v0.12.2/node-v0.12.2-linux-x64.tar.gz --no-verbose
-RUN tar -xf node-v0.12.2-linux-x64.tar.gz -C /opt
-RUN rm node-v0.12.2-linux-x64.tar.gz
-ENV PATH $PATH:/opt/node-v0.12.2-linux-x64/bin
+RUN wget http://nodejs.org/dist/v0.12.2/node-v0.12.2-linux-x64.tar.gz --no-verbose && tar -xf node-v0.12.2-linux-x64.tar.gz -C /opt && rm node-v0.12.2-linux-x64.tar.gz
+ENV PATH $PATH:/opt/node-v0.12.2-linux-x64/bin:/usr/lib/go-1.8/bin
 
 # install proto compiler
 RUN apt-get install -y libprotobuf-dev
 #protobuf-compiler
 RUN apt-get install -y protobuf-compiler
+RUN apt-get install -y golang-1.8
 # RUN wget https://github.com/google/protobuf/releases/download/v3.0.0-beta-3/# protoc-3.0.0-beta-3-linux-x86_64.zip
 #RUN unzip protoc-3.0.0-beta-3-linux-x86_64.zip -d /opt/protobuf
 #RUN rm protoc-3.0.0-beta-3-linux-x86_64.zip
@@ -62,10 +62,7 @@ RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev 
 RUN apt-get install -y build-essential texinfo libtool bc
 
 # install cmake
-RUN wget https://cmake.org/files/v3.8/cmake-3.8.1.tar.gz
-RUN tar -xf cmake-3.8.1.tar.gz
-RUN cd cmake-3.8.1 && ./bootstrap && make && make install
-RUN rm -rf cmake-3.8.1*
+RUN wget https://cmake.org/files/v3.8/cmake-3.8.1.tar.gz && tar -xf cmake-3.8.1.tar.gz && cd cmake-3.8.1 && ./bootstrap && make && make install && rm -rf cmake-3.8.1*
 
 # install gcc 5
 RUN apt-get install -y gcc-5 g++-5 cpp-5 c++-5
@@ -86,9 +83,6 @@ RUN echo "%sudo ALL=(ALL) NOPASSWD: /usr/bin/apt-get" >> /etc/sudoers
 # Anddroid SDK mount point
 ENV ANDROID_HOME /android-sdk-linux
 RUN apt-get install -y lib32stdc++6 lib32z1
-
-# install iconv lib
-RUN curl https://gist.githubusercontent.com/merqlove/eda0bd9511fce0d319e6efb152f8c68d/raw/33d444fc8536de3ca092efb5823bbfbaeb7c45a3/iconv_install_ubuntu14.sh | sh
 
 # Others to prevent build failed
 RUN apt-get install -y doxygen ascii
