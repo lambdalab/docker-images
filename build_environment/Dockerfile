@@ -87,4 +87,5 @@ RUN apt-get install -y lib32stdc++6 lib32z1
 # Others to prevent build failed
 RUN apt-get install -y doxygen ascii
 
+ENV GOROOT /usr/lib/go-1.8
 # TODO: make apt-get need no sudo
