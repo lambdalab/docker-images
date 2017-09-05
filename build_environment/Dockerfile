@@ -89,3 +89,7 @@ RUN apt-get install -y doxygen ascii
 
 ENV GOROOT /usr/lib/go-1.8
 # TODO: make apt-get need no sudo
+
+RUN echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+RUN curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+RUN apt-get update && apt-get install -y bazel
