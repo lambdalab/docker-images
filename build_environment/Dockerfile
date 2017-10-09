@@ -6,8 +6,7 @@ ENV LANG en_US.UTF-8
 RUN locale-gen en_US.UTF-8
 
 # RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
-RUN add-apt-repository -y ppa:git-core/ppa 
-RUN add-apt-repository -y ppa:gophers/archive
+RUN add-apt-repository -y ppa:git-core/ppa && add-apt-repository -y ppa:gophers/archive && add-apt-repository -y ppa:ondrej/php
 RUN apt-get update
 
 RUN apt-get install -y sudo
@@ -53,7 +52,7 @@ RUN apt-get install -y libevent-dev automake libtool flex bison pkg-config g++ l
 RUN apt-get install git -y
 
 # php
-RUN apt-get install -y php7.0 php7.0-xml php7.0-mbstring
+RUN apt-get install -y php7.1 php7.1-xml php7.1-mbstring
 
 # help jdk build
 RUN apt-get install -y libcups2-dev libasound2-dev libfreetype6-dev libxtst-dev libxrender-dev
